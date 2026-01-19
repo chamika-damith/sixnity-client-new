@@ -50,7 +50,7 @@ function Page() {
       <Navbar />
       <div className=' container-global'>
       <motion.div 
-        className="relative w-full lg:h-[70vh] xl:h-[90vh] 2xl:h-[90vh]  bg-primary-gradient rounded-lg my-0 sm:my-0 md:my-0 lg:mb-4 xl:mb-4 2xl:my-0 flex flex-col justify-center overflow-hidden"
+        className="relative w-full min-h-[500px] sm:min-h-[600px] md:min-h-[500px] lg:min-h-[600px] xl:min-h-[700px] 2xl:min-h-[800px] bg-primary-gradient rounded-lg my-0 sm:my-0 md:my-0 lg:mb-4 xl:mb-4 2xl:my-0 flex flex-col justify-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -76,7 +76,7 @@ function Page() {
           className='grid grid-cols-1 lg:grid-cols-4 gap-4 w-full  items-stretch px-6 sm:px-6 md:px-6 lg:px-6 xl:px-6 2xl:px-6 mt-12 lg:mt-0 mb-12 lg:mb-0'
         >
             <motion.div 
-              className='col-span-1 lg:col-span-1 flex justify-center h-full'
+              className='col-span-1 lg:col-span-1 flex justify-center items-center'
               initial={{ opacity: 0, scale: 0.8, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
@@ -87,11 +87,11 @@ function Page() {
                   width={0}
                   height={0}
                   sizes="100vw"
-                  className="w-full sm:w-auto h-auto md:h-full object-contain"
+                  className="w-full sm:w-auto h-auto max-h-[400px] md:max-h-[450px] lg:max-h-[500px] xl:max-h-[750px] 2xl:max-h-[850px] object-contain"
                 />
             </motion.div>
             <motion.div 
-              className='col-span-1 lg:col-span-2 h-full px-0 py-10'
+              className='col-span-1 lg:col-span-2 px-0 py-10'
               variants={fadeInUp}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
@@ -116,7 +116,7 @@ function Page() {
                     initial="hidden"
                     animate="visible"
                   >
-                <motion.div variants={fadeInScale} transition={{ duration: 0.5 }}>
+                <motion.div variants={fadeInScale} transition={{ duration: 0.5 }} className="flex items-center justify-center">
                 <Image
                   src="/images/Home/Googleplay1.png"
                   alt="google"
@@ -150,7 +150,7 @@ function Page() {
               </div>
             </motion.div>
             <motion.div 
-              className='col-span-1 lg:col-span-1 flex justify-center h-full'
+              className='col-span-1 lg:col-span-1 flex justify-center items-center'
               initial={{ opacity: 0, scale: 0.8, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
@@ -161,7 +161,7 @@ function Page() {
                   width={0}
                   height={0}
                   sizes="100vw"
-                  className="w-full sm:w-auto h-auto md:h-full object-contain"
+                  className="w-full sm:w-auto h-auto max-h-[400px] md:max-h-[450px] lg:max-h-[500px] xl:max-h-[750px] 2xl:max-h-[850px] object-contain"
                 />
             </motion.div>
 

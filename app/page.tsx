@@ -49,25 +49,25 @@ export default function Home() {
       <Navbar />
       <div className="  container-global">
       <motion.div 
-        className="relative w-full min-h-[500px] sm:min-h-[600px] md:min-h-[400px] lg:h-[70vh] xl:h-[90vh] 2xl:h-[90vh]  bg-primary-gradient rounded-lg my-0 sm:my-0 md:my-0 lg:mb-4 xl:mb-4 2xl:my-0 flex flex-col justify-end overflow-hidden"
+        className="relative w-full min-h-[500px] sm:min-h-[600px] md:min-h-[500px] lg:min-h-[600px] xl:min-h-[700px] 2xl:min-h-[800px] bg-primary-gradient rounded-lg my-0 sm:my-0 md:my-0 lg:mb-4 xl:mb-4 2xl:my-0 flex flex-col justify-end"
         initial="initial"
         animate="animate"
         variants={fadeIn}
       >
         <motion.div 
-          className="absolute justify-end items-end w-full h-screen sm:h-[60vh] md:h-[60vh] lg:h-[60vh] xl:h-[80vh] 2xl:h-[80vh] z-1"
+          className="absolute inset-0 w-full h-full z-0 flex items-end justify-center overflow-hidden"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="w-full h-0 sm:h-[500px] md:h-[60vh] lg:h-[60vh] xl:h-[80vh] 2xl:h-[80vh] flex justify-center ">
+          <div className="w-full h-full flex justify-center items-end">
             <Image
               src="/images/Home/Girl.png"
               alt="logo"
               width={0}
               height={0}
               sizes="100vw"
-              className="h-full w-auto object-contain"
+              className="h-[0px] sm:h-[450px] md:h-[550px] lg:h-[550px] xl:h-[650px] 2xl:h-[800px] w-auto object-contain"
             />
           </div>
         </motion.div>
@@ -76,7 +76,7 @@ export default function Home() {
           variants={staggerContainer}
         >
           <motion.div 
-            className="col-span-1 lg:col-span-2 px-6 lg:px-0 w-full h-full pt-8 sm:pt-8 md:pt-8 lg:pt-6 pb-6 md:px-6"
+            className="col-span-1 lg:col-span-2 px-6 lg:px-0 w-full pt-8 sm:pt-8 md:pt-8 lg:pt-6 pb-6 md:px-6"
             variants={fadeInUp}
           >
             <div>
@@ -171,7 +171,7 @@ export default function Home() {
                 </motion.div>
               </motion.div>
               <motion.div 
-                className="w-full h-auto md:h-[50vh] lg:h-[50vh] xl:h-[70vh] 2xl:h-[70vh] flex justify-center "
+                className="w-full h-auto flex justify-center items-end"
                 initial={{ opacity: 0, scale: 0.8, y: 50 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
@@ -182,7 +182,7 @@ export default function Home() {
                   width={0}
                   height={0}
                   sizes="100vw"
-                  className="w-full sm:w-auto h-auto md:h-full object-contain"
+                  className="w-full sm:w-auto h-auto max-h-[400px]  md:max-h-[450px] lg:max-h-[500px] xl:h-[950px] 2xl:h-[1000px] object-contain"
                 />
               </motion.div>
 
