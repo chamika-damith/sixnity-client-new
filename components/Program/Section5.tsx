@@ -9,7 +9,7 @@ function Section5() {
         <div className='grid grid-cols-1 lg:grid-cols-5 gap-4  justify-center items-center'>
             <div className='col-span-1 lg:col-span-2 items-center justify-center lg:text-left'>
                 <h2 className='title mb-4 text-center lg:text-left'>
-                Why SixInfinity Leads in Gym Management
+                Why SIXNITIY Leads in Gym Management
                 </h2>
                 
                 <ul className='description mt-8 space-y-3 list-disc list-inside '>

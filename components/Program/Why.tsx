@@ -9,7 +9,7 @@ function Why() {
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center'>
                 <div>
                     <h2 className='title'>
-                        Why SixInfinity Mobile App is Futuristic
+                        Why SIXNITIY Mobile App is Futuristic
                     </h2>
                     
                     <ul className='description space-y-4 sm:space-y-5 md:space-y-2 mb-8 mt-8'>
@@ -50,7 +50,7 @@ function Why() {
                     <div className='w-full max-w-[300px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[300px] xl:max-w-[350px] 2xl:max-w-[400px]'>
                         <Image 
                             src="/images/Home/Section5/MobileApp1.png" 
-                            alt="SixInfinity Mobile App - Meal tab" 
+                            alt="SIXNITIY Mobile App - Meal tab" 
                             width={0}
                             height={0}
                             sizes="100vw"
@@ -60,7 +60,7 @@ function Why() {
                     <div className='w-full max-w-[300px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[300px] xl:max-w-[350px] 2xl:max-w-[400px]'>
                         <Image 
                             src="/images/Home/Section7/MobileApp.png" 
-                            alt="SixInfinity Mobile App - Workouts & Trainers" 
+                            alt="SIXNITIY Mobile App - Workouts & Trainers" 
                             width={0}
                             height={0}
                             sizes="100vw"

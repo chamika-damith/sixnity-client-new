@@ -51,7 +51,7 @@ function WhyUs() {
               <div className='w-full max-w-[400px] sm:max-w-[450px] md:max-w-[500px] lg:max-w-[450px] xl:max-w-[500px] 2xl:max-w-[550px]'>
                 <Image
                   src="/images/Program/GirlwithPhone.png"
-                  alt="Woman holding smartphone with SixInfinity app"
+                  alt="Woman holding smartphone with SIXNITIY app"
                   width={0}
                   height={0}
                   sizes="100vw"

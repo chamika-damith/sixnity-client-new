@@ -84,7 +84,7 @@ function Comparison() {
                   Feature/ Capability
                 </th>
                 <th className="p-4 sm:p-6 text-start font-neutiva font-bold text-sm sm:text-base  text-black ">
-                  SixInfinity Gym Management System
+                  SIXNITIY Gym Management System
                 </th>
                 <th className="p-4 sm:p-6 text-start font-neutiva font-bold text-sm sm:text-base text-black">
                   Other Gym Management System

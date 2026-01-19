@@ -79,7 +79,7 @@ function MACoparison() {
                   Feature/ Capability
                 </th>
                 <th className="p-4 sm:p-6 text-start font-neutiva font-bold text-sm sm:text-base  text-black ">
-                  SixInfinity Gym Mobile App
+                  SIXNITIY Gym Mobile App
                 </th>
                 <th className="p-4 sm:p-6 text-start font-neutiva font-bold text-sm sm:text-base text-black">
                   Other Gym Mobile App
