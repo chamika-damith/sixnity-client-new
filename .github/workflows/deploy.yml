@@ -1,0 +1,118 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - QA_Done
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/sixnity-client:latest
+            ${{ secrets.DOCKER_USERNAME }}/sixnity-client:${{ github.sha }}
+          cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/sixnity-client:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/sixnity-client:buildcache,mode=max
+
+      - name: Copy deployment files to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SERVER_PORT || '22' }}
+          source: "docker-compose.yml,nginx.conf"
+          target: "/var/www/sixnity-client"
+          strip_components: 0
+
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1.0.0
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SERVER_PORT || '22' }}
+          envs: DOCKER_USERNAME
+          script: |
+            echo "Navigating to deployment directory..."
+            cd /var/www/sixnity-client || { echo "Directory not found"; exit 1; }
+            
+            echo "Setting Docker username: $DOCKER_USERNAME"
+            export DOCKER_USERNAME=$DOCKER_USERNAME
+            
+            echo "Pulling latest Docker image..."
+            docker compose pull || { echo "Failed to pull image"; exit 1; }
+            
+            echo "Starting containers..."
+            docker compose up -d --force-recreate
+            
+            echo "Cleaning up old images and containers..."
+            docker system prune -af --volumes
+            
+            echo "Deployment completed successfully"
+
+      - name: Verify deployment
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SERVER_PORT || '22' }}
+          script: |
+            echo "Waiting for containers to be ready..."
+            sleep 10
+            
+            echo "Checking container status..."
+            docker ps
+            
+            echo "Checking if sixnity-client container is running..."
+            if ! docker ps | grep -q sixnity-client; then
+              echo "Error: sixnity-client container is not running"
+              docker ps -a | grep sixnity-client
+              docker logs sixnity-client --tail 50
+              exit 1
+            fi
+            
+            echo "Container is running. Waiting for app to be ready..."
+            for i in {1..30}; do
+              if curl -f -s http://localhost:3005 > /dev/null 2>&1; then
+                echo "Application is responding!"
+                exit 0
+              fi
+              echo "Attempt $i: Application not ready yet, waiting..."
+              sleep 2
+            done
+            
+            echo "Application failed to respond after 60 seconds"
+            docker logs sixnity-client --tail 100
+            exit 1
+
+      - name: Notify on success
+        if: success()
+        run: echo "Deployment completed successfully!"
+
+      - name: Notify on failure
+        if: failure()
+        run: echo "Deployment failed!" && exit 1
